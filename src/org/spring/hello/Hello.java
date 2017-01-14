@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class Hello {
 
-	@RequestMapping("/hello")
+	@RequestMapping("/")
 	public ModelAndView display(){
 		System.out.println("Hello");
 		return new ModelAndView("hello");
