@@ -1,5 +1,6 @@
 package org.spring.product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,4 +47,14 @@ public class ProductDAO {
 		productList.add(product2);
 		return productList;
 	}
+	
+	public Product getProductById(String id) throws IOException{
+		for(Product p:productList){
+			if(p.getProductId().equals(id)){
+				return p;
+			}
+		}
+		throw new IOException();
+	}
+
 }
