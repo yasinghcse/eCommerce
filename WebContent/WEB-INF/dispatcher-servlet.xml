@@ -8,11 +8,12 @@
 	<context:annotation-config />
 	<mvc:default-servlet-handler/>
 
-	<context:component-scan base-package="org.spring.hello" />
+	<context:component-scan base-package="org.spring.home" />
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix"><value>/WEB-INF/view/</value></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
 
 </beans>
