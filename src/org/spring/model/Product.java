@@ -5,12 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String productId;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private int productId;
 	private String productName;
 	private String productCategory;
 	private String productDescription;
@@ -19,10 +21,10 @@ public class Product {
 	private String productStatus;
 	private String unitInStock;
 	private String productManufacturer;
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 	public String getProductName() {

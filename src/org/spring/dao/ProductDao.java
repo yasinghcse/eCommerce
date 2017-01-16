@@ -6,7 +6,7 @@ import org.spring.model.Product;
 
 public interface ProductDao {
 	void addProduct(Product product);
-	Product getProductById(String Id);
+	Product getProductById(int Id);
 	List<Product> getAllProducts();
-	void deleteProduct(String id);
+	void deleteProduct(int id);
 }
