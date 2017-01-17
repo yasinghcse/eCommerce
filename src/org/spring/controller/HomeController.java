@@ -80,11 +80,15 @@ public class HomeController {
 		productDao.addProduct(product);
 		
 		MultipartFile productImage= product.getProductImage();
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		path = Paths.get(rootDirectory + "//resources//images//" + product.getProductId() + ".png");
+		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/ecommerce");
+		path = Paths.get(rootDirectory + "//WebContent//resources//images//" + product.getProductId() + ".png");
 		if((productImage != null) && (!productImage.isEmpty())){
 			try{
-				System.out.println(rootDirectory);
+				
+				System.out.println(request.getSession().getServletContext().getRealPath("/"));
+				System.out.println(request.getSession().getServletContext().getContextPath());
+				//System.out.println(request.getSession().getServletContext().);
 				System.out.println(path);
 				productImage.transferTo(new File(path.toString()));
 			}
