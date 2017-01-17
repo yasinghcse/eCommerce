@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.MultipartFilter;
 
@@ -16,12 +18,18 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int productId;
+	
+	@NotEmpty(message = "This product name must not be null")
 	private String productName;
 	private String productCategory;
 	private String productDescription;
+	
+	@Min(value = 0, message = "This product price must not be less than 0")
 	private double productPrice;
 	private String productCondition;
 	private String productStatus;
+	
+	@Min(value = 0,message = "This product stocks name must not be less than 0")
 	private String unitInStock;
 	private String productManufacturer;
 	@Transient

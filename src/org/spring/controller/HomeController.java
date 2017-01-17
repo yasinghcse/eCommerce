@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.spring.dao.ProductDao;
 import org.spring.dao.imp.ProductDaoImpl;
@@ -16,6 +17,7 @@ import org.spring.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,7 +72,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/admin/productInventory/addProduct",method= RequestMethod.POST)
-	public String addProductPost(@ModelAttribute("product") Product product, HttpServletRequest request){
+	public String addProductPost(@Valid  @ModelAttribute("product") Product product,BindingResult result, HttpServletRequest request){
+		
+		if(result.hasErrors()){
+			return "addProduct";
+		}
 		productDao.addProduct(product);
 		
 		MultipartFile productImage= product.getProductImage();
@@ -123,8 +129,12 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/admin/productInventory/editProduct", method = RequestMethod.POST)
-	public String editProductPost(@ModelAttribute("product") Product product,Model model, HttpServletRequest request){
+	public String editProductPost(@Valid @ModelAttribute("product") Product product,Model model, HttpServletRequest request, BindingResult result){
 
+		if(result.hasErrors()){
+			return "editProduct";
+		}
+		
 		MultipartFile productImage= product.getProductImage();
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		path = Paths.get(rootDirectory + "//resources//images//" + product.getProductId() + ".png");
