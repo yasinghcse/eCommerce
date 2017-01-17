@@ -33,7 +33,6 @@
 						<th>Condition</th>
 						<th>Price</th>
 						<th></th>
-						<th></th>
 					</tr>
 				</thead>
 				<c:forEach items="${product }" var="product">
@@ -47,8 +46,8 @@
 						<td>
 						<a href="<spring:url value="/productList/viewProduct/${product.productId}" />" >
 							<span class="glyphicon glyphicon-info-sign"/>
-						</td>
-						<td>
+						<a href="<spring:url value="/admin/productInventory/editProduct/${product.productId}" />" >
+							<span class="glyphicon glyphicon-pencil"/>
 						<a href="<spring:url value="/admin/productInventory/deleteProduct/${product.productId}" />" >
 							<span class="glyphicon glyphicon-remove"/>
 						</td>

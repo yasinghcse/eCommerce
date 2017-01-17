@@ -24,6 +24,13 @@ public class ProductDaoImpl implements ProductDao {
 		session.saveOrUpdate(product);
 		session.flush();
 	}
+	
+	@Override
+	public void editProduct(Product product){
+		Session session = sessionFactory.getCurrentSession();
+		session.update(product);
+		session.flush();
+	}
 
 	@Override
 	public Product getProductById(int Id) {
