@@ -14,25 +14,36 @@
 </head>
 <body>
 <body>
-	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-	<%@ include file="/WEB-INF/view/template/header.jsp" %>
+	<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+	<%@ include file="/WEB-INF/view/template/header.jsp"%>
 
- <div class="container marketing">
-	<div class="container-wrapper">
-		<div class="container">
-			<div class="page-header">
-				<h1>All Products</h1>
-				<p>Check all awsome products catelog</p>
+	<div class="container marketing">
+		<div class="container-wrapper">
+			<div class="container">
+				<div class="page-header">
+					<h1>All Products</h1>
+					<p>Check all awsome products catelog</p>
+
+				</div>
+				<h3>
+					<c:if test="${pageContext.request.userPrincipal.name != null}">
+						<h2>
+							<c:url var="logoutUrl" value="/j_spring_security_logout" />
+							Welcome : ${pageContext.request.userPrincipal.name}
+							<form action="${logoutUrl}" method="post">
+								<input type="submit" value="Logout"  class="btn btn-default"/> <input type="hidden"
+									name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</form>
+						</h2>
+					</c:if>
+					<a href="<c:url value= "/admin/productInventory"></c:url>">ProductInventory</a>
+				</h3>
+				<p>Here you can view, edit, modify the product Inventory</p>
 			</div>
-			<h3>
-				<a href="<c:url value= "/admin/productInventory"></c:url>">ProductInventory</a>
-			</h3>
-			<p>Here you can view, edit, modify the product Inventory</p>
 		</div>
-	</div>
 
-	
-	<%@ include file="/WEB-INF/view/template/footer.jsp" %>
+
+		<%@ include file="/WEB-INF/view/template/footer.jsp"%>
 
 	</div>
 	<!-- /.container -->
